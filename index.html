@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNUC Freshers' Lunchbox: Survival Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito Sans', 'sans-serif'],
+                        display: ['Fredoka', 'sans-serif'],
+                        hand: ['Caveat', 'cursive'],
+                    },
+                    colors: {
+                        cream: '#FBF1DE',
+                        paper: '#FFFDF8',
+                        crust: '#4A3A2C',
+                        clay: '#C1502E',
+                        clayDeep: '#A03F23',
+                        sage: '#7C8B5E',
+                        sageDeep: '#5F6E45',
+                        yolk: '#E8A93A',
+                        plum: '#8C4B5E',
+                        sky: '#5B8A9A',
+                        tomato: '#D9583F',
+                    },
+                    boxShadow: {
+                        soft: '0 6px 18px rgba(74, 58, 44, 0.10)',
+                        lifted: '0 14px 30px rgba(74, 58, 44, 0.16)',
+                        stamp: 'inset 0 0 0 2px rgba(74,58,44,0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --paper-dot: rgba(74, 58, 44, 0.07);
+        }
+
+        html, body { background-color: #FBF1DE; }
+
+        body {
+            color: #4A3A2C;
+            background-image:
+                radial-gradient(circle, var(--paper-dot) 1.4px, transparent 1.4px);
+            background-size: 22px 22px;
+            background-position: -4px -4px;
+            background-attachment: fixed;
+        }
+
+        /* soft grain overlay for warmth */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse at 8% 10%, rgba(232,169,58,0.10) 0%, transparent 45%),
+                radial-gradient(ellipse at 92% 85%, rgba(124,139,94,0.10) 0%, transparent 45%);
+        }
+
+        /* Hand-drawn wobble border via SVG filter */
+        .wobbly { filter: url(#wobble); }
+
+        /* Cozy compartment card base */
+        .box-card {
+            background: #FFFDF8;
+            border: 2.5px solid #4A3A2C;
+            border-radius: 26px;
+            box-shadow: 0 6px 0 0 rgba(74,58,44,0.14), 0 6px 18px rgba(74,58,44,0.10);
+            transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s cubic-bezier(0.16,1,0.3,1);
+        }
+        .box-card:hover {
+            transform: translateY(-4px) rotate(-0.3deg);
+            box-shadow: 0 10px 0 0 rgba(74,58,44,0.14), 0 16px 30px rgba(74,58,44,0.14);
+        }
+        .box-card:active { transform: translateY(-1px); }
+
+        /* Dashed stitch divider, like compartment seams */
+        .stitch-divider {
+            border-top: 2.5px dashed rgba(74,58,44,0.25);
+        }
+
+        /* Washi tape label */
+        .washi {
+            background: repeating-linear-gradient(135deg, rgba(255,255,255,0.35) 0 6px, rgba(255,255,255,0.12) 6px 12px);
+            box-shadow: 0 2px 4px rgba(74,58,44,0.18);
+        }
+
+        /* Modal - recipe card feel */
+        .recipe-card {
+            background: #FFFDF8;
+            border: 2.5px solid #4A3A2C;
+            box-shadow: 0 18px 0 0 rgba(74,58,44,0.06), 0 20px 45px rgba(74,58,44,0.25);
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #FBF1DE; }
+        ::-webkit-scrollbar-thumb { background: #E3CFA3; border-radius: 9999px; border: 2px solid #FBF1DE; }
+        ::-webkit-scrollbar-thumb:hover { background: #C1502E; }
+
+        /* Lunchbox tray grid */
+        .lunchbox-grid {
+            display: grid;
+            gap: 1.1rem;
+            grid-template-columns: repeat(1, 1fr);
+        }
+        @media (min-width: 768px) {
+            .lunchbox-grid {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(3, minmax(150px, auto));
+                grid-template-areas:
+                    "a a b"
+                    "a a c"
+                    "d e c";
+            }
+            .lb-academics { grid-area: a; }
+            .lb-hostel { grid-area: b; }
+            .lb-student_life { grid-area: c; }
+            .lb-nearby { grid-area: d; }
+            .lb-emergency { grid-area: e; }
+        }
+
+        @keyframes steam-rise {
+            0%, 100% { transform: translateY(0) scaleY(1); opacity: 0.55; }
+            50% { transform: translateY(-6px) scaleY(1.08); opacity: 0.9; }
+        }
+        .steam-doodle { animation: steam-rise 3s ease-in-out infinite; transform-origin: bottom center; }
+
+        @keyframes jiggle {
+            0%, 100% { transform: rotate(-6deg) scale(1); }
+            50% { transform: rotate(6deg) scale(1.06); }
+        }
+        .pulse-emergency { animation: jiggle 1.6s ease-in-out infinite; }
+
+        .tape-rotate-1 { transform: rotate(-4deg); }
+        .tape-rotate-2 { transform: rotate(3deg); }
+        .tape-rotate-3 { transform: rotate(-2deg); }
+
+        @keyframes fade-pop {
+            0% { opacity: 0; transform: translateY(10px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .fade-pop { animation: fade-pop 0.35s cubic-bezier(0.16,1,0.3,1); }
+    </style>
+</head>
+<style>
+    /* ===== Cozy remap for legacy dark-theme utility classes embedded in content ===== */
+    [class*="bg-stone-900"], [class*="bg-stone-950"] { background-color: #FBF1DE !important; }
+    [class*="border-stone-800"], [class*="border-stone-900"] { border-color: #E3CFA3 !important; }
+    [class*="text-stone-100"], [class*="text-stone-200"] { color: #3A2D22 !important; }
+    [class*="text-stone-300"] { color: #4A3A2C !important; }
+    [class*="text-stone-400"], [class*="text-stone-500"] { color: #7A6752 !important; }
+    [class*="text-white"] { color: #FFFDF8 !important; }
+    input[class*="text-white"] { color: #4A3A2C !important; }
+
+    [class*="bg-rose-950"], [class*="bg-red-950"] { background-color: #FBE3DC !important; border-color: #E3A793 !important; }
+    [class*="text-rose-400"], [class*="text-rose-500"], [class*="text-red-400"] { color: #B4432A !important; }
+    [class*="border-rose-800"], [class*="border-rose-500"], [class*="border-red-500"] { border-color: #E3A793 !important; }
+
+    [class*="bg-amber-950"] { background-color: #FBEDCB !important; border-color: #E3C077 !important; }
+    [class*="text-amber-400"] { color: #8A6412 !important; }
+    [class*="border-amber-800"], [class*="border-amber-500"] { border-color: #E3C077 !important; }
+
+    [class*="bg-orange-950"] { background-color: #FBE3CE !important; border-color: #E3AE7E !important; }
+    [class*="text-orange-400"] { color: #A0501F !important; }
+    [class*="border-orange-800"], [class*="border-orange-500"] { border-color: #E3AE7E !important; }
+
+    [class*="bg-blue-950"] { background-color: #DFEBEE !important; border-color: #9DC2CD !important; }
+    [class*="text-blue-400"] { color: #2E6274 !important; }
+    [class*="border-blue-800"] { border-color: #9DC2CD !important; }
+
+    [class*="bg-emerald-950"] { background-color: #E4EAD6 !important; border-color: #A7BB87 !important; }
+    [class*="text-emerald-400"], [class*="border-emerald-500"] { color: #4B5E31 !important; border-color: #A7BB87 !important; }
+
+    [class*="bg-purple-950"] { background-color: #EBE0E8 !important; border-color: #BC9FBC !important; }
+    [class*="text-purple-400"] { color: #6B4A6B !important; }
+
+    [class*="bg-pink-950"] { background-color: #F7E2E8 !important; border-color: #DDA7BB !important; }
+    [class*="text-pink-400"] { color: #9A4A64 !important; }
+
+    #modal-body-content blockquote { color: #6B5847 !important; }
+    #modal-body-content strong { color: #3A2D22; }
+    #modal-body-content ::marker { color: #C1502E; }
+    #modal-body-content a { color: #C1502E; text-decoration: underline; }
+</style>
+<body class="font-sans min-h-screen flex flex-col text-crust selection:bg-yolk selection:text-crust relative">
+
+    <!-- Hand-drawn wobble filter, used across doodle borders -->
+    <svg width="0" height="0" class="absolute">
+        <filter id="wobble">
+            <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" result="noise" seed="7"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="4"/>
+        </filter>
+    </svg>
+
+    <header class="sticky top-0 z-40 border-b-2 border-crust/10 bg-cream/90 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <!-- Brand Logo -->
+            <a href="javascript:void(0)" onclick="navigateTo('home')" class="flex items-center gap-3 group flex-shrink-0">
+                <div class="w-11 h-11 rounded-2xl bg-clay border-2 border-crust flex items-center justify-center shadow-soft group-hover:-rotate-6 transition-transform duration-300 relative">
+                    <i class="fa-solid fa-box-open text-paper text-lg"></i>
+                    <span class="absolute -top-1.5 -right-1.5 text-sm">🍱</span>
+                </div>
+                <div class="hidden xs:block">
+                    <h1 class="text-md sm:text-lg font-display font-semibold tracking-wide text-crust group-hover:text-clay transition-colors leading-tight">SNUC Freshers'</h1>
+                    <p class="text-2xs sm:text-xs text-crust/60 tracking-wider uppercase font-bold">Lunchbox Survival Guide</p>
+                </div>
+            </a>
+
+            <!-- Live Search input -->
+            <div class="relative w-40 xs:w-48 sm:w-64 md:w-80">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-crust/50">
+                    <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                </span>
+                <input type="text" id="global-search" oninput="handleSearch(this.value)" placeholder="Peek inside the lunchbox..." class="w-full bg-paper text-crust placeholder-crust/40 text-xs sm:text-sm rounded-2xl py-2.5 pl-9 pr-4 border-2 border-crust/15 focus:outline-none focus:border-clay transition-colors duration-300">
+
+                <div id="search-dropdown" class="absolute left-0 right-0 mt-2 bg-paper border-2 border-crust/15 rounded-2xl max-h-80 overflow-y-auto z-50 hidden shadow-lifted"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full relative z-10">
+
+        <!-- Live Seniors' Advice Board — sticky note -->
+        <div class="mb-10 p-4 sm:p-5 rounded-2xl bg-yolk/20 border-2 border-dashed border-yolk/70 flex items-start gap-3 shadow-soft relative -rotate-[0.4deg]">
+            <span class="flex-shrink-0 w-9 h-9 rounded-xl bg-yolk border-2 border-crust text-crust flex items-center justify-center mt-0.5">
+                <i class="fa-solid fa-note-sticky text-sm"></i>
+            </span>
+            <div>
+                <h3 class="text-2xs font-extrabold uppercase text-clayDeep tracking-wider font-display">Note from the Seniors</h3>
+                <p class="text-xs sm:text-sm text-crust/80 mt-1 font-hand text-base sm:text-lg leading-snug">"The 75% attendance rule is incredibly real — don't risk early misses. Check your official mail daily!"</p>
+            </div>
+        </div>
+
+        <!-- VIEW 1: HOME VIEW (LUNCHBOX TRAY) -->
+        <div id="view-home" class="transition-all duration-500 ease-in-out">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="inline-block text-4xs sm:text-xs uppercase tracking-[0.2em] font-extrabold text-sage bg-sage/10 border border-sage/30 rounded-full px-3 py-1 mb-4">Pack your first semester right</span>
+                <h2 class="text-4xl sm:text-5xl font-display font-semibold text-crust leading-tight">Welcome to your <span class="text-clay">Freshers' Lunchbox</span></h2>
+                <p class="text-sm sm:text-base text-crust/70 mt-4 leading-relaxed">
+                    Every compartment below is packed by seniors — traditions, admin shortcuts, food spots, local hacks, and emergency numbers. Tap a compartment to dig in.
+                </p>
+            </div>
+
+            <!-- Lunchbox Tray -->
+            <div class="rounded-[2.5rem] border-[3px] border-crust bg-clay/90 p-3 sm:p-5 shadow-lifted relative">
+                <!-- clasp doodle -->
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-16 h-8 rounded-full bg-crust border-[3px] border-crust hidden sm:block"></div>
+                <div id="master-categories-grid" class="lunchbox-grid">
+                    <!-- Dynamically loaded categories -->
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 2: BENTO BOX GRID FOR CATEGORIES -->
+        <div id="view-category" class="hidden transition-all duration-500 ease-in-out">
+            <!-- Breadcrumbs -->
+            <div class="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <button onclick="navigateTo('home')" class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-crust hover:text-clay transition-colors self-start py-2.5 px-4 rounded-2xl border-2 border-crust bg-paper shadow-soft">
+                    <i class="fa-solid fa-arrow-left-long"></i> Back to Lunchbox
+                </button>
+                <div class="text-left sm:text-right">
+                    <h2 id="category-page-title" class="text-2xl sm:text-3xl font-display font-semibold text-crust">Category Loading...</h2>
+                    <p id="category-page-desc" class="text-xs sm:text-sm text-crust/60 mt-1 max-w-xl sm:ml-auto">Category description placeholder...</p>
+                </div>
+            </div>
+
+            <!-- Bento Box Asymmetric Grid -->
+            <div id="bento-box-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 auto-rows-[240px]">
+                <!-- Dynamic Bento cards populate here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- EMERGENCY FLOATING ACTION BUTTON -->
+    <button onclick="openEmergencyModal()" class="fixed bottom-6 right-6 z-50 flex items-center justify-center gap-2 bg-tomato hover:bg-clayDeep text-paper font-extrabold py-3 px-5 sm:py-4 sm:px-6 rounded-full shadow-lifted transition-colors duration-300 transform active:scale-95 focus:outline-none border-2 border-crust">
+        <span class="pulse-emergency inline-block text-base sm:text-lg">🩹</span>
+        <span class="text-xs sm:text-sm tracking-wider uppercase font-display">Help Desk</span>
+    </button>
+
+    <!-- CARD DETAIL POP-UP MODAL (DYNAMIC CONTENT CONTAINER) -->
+    <div id="detail-modal" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-crust/60 backdrop-blur-sm transition-opacity" aria-hidden="true" onclick="closeModal()"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <div class="fade-pop inline-block align-bottom recipe-card rounded-[2rem] text-left overflow-hidden transform sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full w-full">
+                <!-- Header Accent Glow Line -->
+                <div id="modal-accent-line" class="h-2 w-full bg-clay"></div>
+
+                <div class="px-6 py-6 sm:p-8">
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <span id="modal-category-tag" class="text-2xs uppercase tracking-widest font-extrabold px-2.5 py-1 rounded-full washi border-2 border-crust text-paper mb-3 inline-block">Category</span>
+                            <h3 class="text-xl sm:text-2xl font-display font-semibold text-crust" id="modal-title">Card Title Loading</h3>
+                        </div>
+                        <button onclick="closeModal()" class="flex-shrink-0 text-crust hover:text-clay transition-colors p-2 rounded-xl bg-cream border-2 border-crust/20">
+                            <i class="fa-solid fa-xmark text-lg"></i>
+                        </button>
+                    </div>
+
+                    <!-- Main Body Content slot -->
+                    <div class="mt-6 text-crust/85 leading-relaxed text-sm space-y-4" id="modal-body-content">
+                        <!-- Filled on runtime -->
+                    </div>
+                </div>
+
+                <div class="px-6 py-4 bg-cream stitch-divider flex justify-end">
+                    <button onclick="closeModal()" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-crust hover:bg-clayDeep text-paper transition-colors">
+                        Close &amp; Pack Away
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PERSISTENT REUSABLE EMERGENCY PANEL MODAL -->
+    <div id="emergency-modal" class="fixed inset-0 z-50 overflow-y-auto hidden" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-crust/70 backdrop-blur-sm transition-opacity" aria-hidden="true" onclick="closeEmergencyModal()"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <div class="fade-pop inline-block align-bottom recipe-card rounded-[2rem] text-left overflow-hidden transform sm:my-8 sm:align-middle sm:max-w-xl sm:w-full w-full">
+                <div class="h-2 w-full bg-tomato"></div>
+                <div class="px-6 py-6 sm:p-8">
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <span class="text-2xs uppercase tracking-widest font-extrabold px-2.5 py-1 rounded-full bg-tomato/15 border-2 border-tomato/40 text-tomato mb-2 inline-block">Critical Resources</span>
+                            <h3 class="text-xl sm:text-2xl font-display font-semibold text-crust flex items-center gap-2">
+                                🩹 Immediate Support Core
+                            </h3>
+                        </div>
+                        <button onclick="closeEmergencyModal()" class="flex-shrink-0 text-crust hover:text-clay transition-colors p-2 rounded-xl bg-cream border-2 border-crust/20">
+                            <i class="fa-solid fa-xmark text-lg"></i>
+                        </button>
+                    </div>
+
+                    <!-- Emergency Content Grid -->
+                    <div class="mt-6 space-y-4">
+                        <div class="p-4 bg-tomato/10 border-2 border-tomato/30 rounded-2xl">
+                            <h4 class="font-bold text-clayDeep text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-truck-medical"></i> Emergency Ambulance Dispatch
+                            </h4>
+                            <p class="text-xs text-crust/70 mt-1">Available 24/7 on campus for immediate medical transit to Chettinad Health City.</p>
+                            <a href="tel:+914427469700" class="inline-flex items-center gap-2 text-xs font-mono font-bold text-paper bg-tomato hover:bg-clayDeep px-3 py-1.5 rounded-lg mt-3 transition-colors">
+                                <i class="fa-solid fa-phone"></i> Call Emergency Desk (+91 44 2746 9700)
+                            </a>
+                        </div>
+
+                        <div class="p-4 bg-cream border-2 border-crust/15 rounded-2xl">
+                            <h4 class="font-bold text-sky text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-shield"></i> Security Main Office
+                            </h4>
+                            <p class="text-xs text-crust/70 mt-1">Main gate patrol dispatch, anti-ragging response unit, lost &amp; found coordinates.</p>
+                            <a href="tel:+914427461700" class="inline-flex items-center gap-2 text-xs font-mono font-bold text-paper bg-crust hover:bg-crust/80 px-3 py-1.5 rounded-lg mt-3 transition-colors">
+                                <i class="fa-solid fa-phone"></i> Call Security Guard (+91 44 2746 1700)
+                            </a>
+                        </div>
+
+                        <div class="p-4 bg-cream border-2 border-crust/15 rounded-2xl">
+                            <h4 class="font-bold text-plum text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-user-doctor"></i> Student Counsellor (Ilakkiya L Ma'am)
+                            </h4>
+                            <p class="text-xs text-crust/70 mt-1">Confidential pathway, stress recovery, active student wellness counseling.</p>
+                            <span class="text-xs text-crust/60 block mt-2 font-semibold">Location: Academic Block 1, First Floor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const DATABASE = {
+            categories: {
+                academics: {
+                    id: "academics",
+                    title: "Academics & Survival Core",
+                    accent: "coral",
+                    accentHex: "#f43f5e",
+                    icon: "fa-graduation-cap",
+                    banner: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80",
+                    description: "Learn how to survive the 75% rule, map exact department offices, find exam centres, and adapt to library codes.",
+                    cards: [
+                        {
+                            id: "attendance",
+                            title: "The 75% Attendance Trap & Punctuality",
+                            badge: "Critical Warning",
+                            badgeColor: "text-rose-400 bg-rose-950/40 border-rose-800/50",
+                            size: "col-span-1 md:col-span-2 row-span-2",
+                            quote: "Arriving even 1 minute late defaults you as absent. Check mail daily.",
+                            summary: "The attendance platform registers entries electronically. Missing classes blindly is academic suicide.",
+                            details: `
+                                <div class='space-y-4'>
+                                    <p class='text-sm text-stone-300 leading-relaxed'>SNUC operates an automated attendance logging system. Faculty submit rosters in real-time, leaving virtually no room for retrospective manual overrides or soft excuses.</p>
+                                    
+                                    <div class='p-4 bg-rose-950/15 border border-rose-500/25 rounded-2xl'>
+                                        <h4 class='text-sm font-bold text-rose-400 flex items-center gap-2 mb-1.5'>
+                                            <i class='fa-solid fa-clock'></i> What happens if you come late?
+                                        </h4>
+                                        <p class='text-xs text-stone-300'>Entering past the class bell usually means you are logged absent for that lecture hour. Watch out! Do not gamble away your 25% margin on early morning sleepiness; you will urgently need that cushion for medical phases or exam prep weeks.</p>
+                                    </div>
+
+                                    <div class='p-4 bg-stone-900 border border-stone-800 rounded-2xl'>
+                                        <h4 class='text-sm font-bold text-amber-400 flex items-center gap-2 mb-1'>
+                                            <i class='fa-solid fa-envelope'></i> Official Student Inbox Rule
+                                        </h4>
+                                        <p class='text-xs text-stone-400'>All academic notifications, course registration dates, warning logs, and schedule modifications arrive strictly on your official ID. Add your student email to your smartphone inbox and review it twice daily.</p>
+                                    </div>
+
+                                    <!-- Bunk Calculator Widget -->
+                                    <div class='p-5 rounded-2xl bg-stone-950/80 border border-orange-500/20'>
+                                        <h4 class='text-sm font-bold text-orange-400 flex items-center gap-2 mb-1'>
+                                            <i class='fa-solid fa-calculator'></i> Interactive Attendance Bunk Calculator
+                                        </h4>
+                                        <p class='text-xs text-stone-400 mb-4'>Enter your current parameters to calculate bunk tolerances:</p>
+                                        <div class='grid grid-cols-2 gap-4 mb-4'>
+                                            <div>
+                                                <label class='block text-3xs uppercase text-stone-500 font-bold mb-1'>Classes Attended</label>
+                                                <input type='number' id='calc-attended' value='16' class='w-full bg-stone-900 border border-stone-800 rounded-lg p-2 text-white text-xs focus:outline-none focus:border-clay'>
+                                            </div>
+                                            <div>
+                                                <label class='block text-3xs uppercase text-stone-500 font-bold mb-1'>Classes Conducted</label>
+                                                <input type='number' id='calc-total' value='20' class='w-full bg-stone-900 border border-stone-800 rounded-lg p-2 text-white text-xs focus:outline-none focus:border-clay'>
+                                            </div>
+                                        </div>
+                                        <button onclick='runBunkCalc()' class='w-full bg-gradient-to-r from-clay to-yolk text-white font-bold py-2 rounded-xl text-xs transition-opacity hover:opacity-90'>
+                                            Calculate My Status
+                                        </button>
+                                        <div id='calc-result' class='mt-4 p-3 bg-stone-900/60 rounded-xl text-xs hidden border border-stone-800'></div>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "admin-locations",
+                            title: "Admin & Departments Roadmap",
+                            badge: "Locations Hub",
+                            badgeColor: "text-amber-400 bg-amber-950/40 border-amber-800/50",
+                            size: "col-span-1",
+                            quote: "Bonafide, finance, transport, and hostels are separated.",
+                            summary: "Avoid spending hours walking around aimlessly. Know where to submit specific papers.",
+                            details: `
+                                <div class='space-y-4'>
+                                    <p class='text-sm text-stone-300'>Seniors recommend keeping this operational map saved for administrative errands:</p>
+                                    <ul class='space-y-3'>
+                                        <li class='p-3 bg-stone-900/60 border border-stone-800 rounded-xl'>
+                                            <strong class='text-clay block text-xs uppercase tracking-wider mb-0.5'>Academic Block 1:</strong>
+                                            <span class='text-xs text-stone-300'>First floor houses the primary administrative hub for Bonafide Certificates, registration errors, and grade logs.</span>
+                                        </li>
+                                        <li class='p-3 bg-stone-900/60 border border-stone-800 rounded-xl'>
+                                            <strong class='text-clay block text-xs uppercase tracking-wider mb-0.5'>Administrative Block:</strong>
+                                            <span class='text-xs text-stone-300'>The Ground Floor is where the Finance and Fee desks reside (for caution deposits, academic transactions).</span>
+                                        </li>
+                                        <li class='p-3 bg-stone-900/60 border border-stone-800 rounded-xl'>
+                                            <strong class='text-clay block text-xs uppercase tracking-wider mb-0.5'>Lobby & Gatehouse:</strong>
+                                            <span class='text-xs text-stone-300'>Check here for Transport Cards, bus pass updates, and ID card claims. Hostel management offices sit next to the primary mess entrance.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "ct-resilience",
+                            title: "Academic Resilience (The CT Rule)",
+                            badge: "Core Advice",
+                            badgeColor: "text-orange-400 bg-orange-950/40 border-orange-800/50",
+                            size: "col-span-1",
+                            quote: "Don't go to CT without mental resilience.",
+                            summary: "Continuous Tests move fast. Learn how to stay afloat and organize early.",
+                            details: `
+                                <div class='space-y-4'>
+                                    <blockquote class='border-l-4 border-clay pl-4 italic text-stone-400'>
+                                        "Don't go to CT without mental resilience."
+                                    </blockquote>
+                                    <p class='text-xs text-stone-300 leading-relaxed'>Continuous Tests (CT) occur in rapid succession. Freshers often underestimate the syllabus coverage. To survive, join local study groups early, use digital library notes, and solve past semester patterns weeks before the actual test week.</p>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "exam-centres",
+                            title: "NPTEL & BS Degree Exam Centres",
+                            badge: "External Exams",
+                            badgeColor: "text-blue-400 bg-blue-950/40 border-blue-800/50",
+                            size: "col-span-1",
+                            quote: "Common coordinate groups and location grids.",
+                            summary: "How to safely navigate outstation centers and track BS test alignments.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>Standardized external programs require off-campus travel. Keep these rules in mind:</p>
+                                    <ul class='list-disc pl-5 space-y-2'>
+                                        <li><strong>Coordinate Groups:</strong> Join the senior-moderated WhatsApp loops immediately to share travel logistics and past question pools.</li>
+                                        <li><strong>Exam Slips:</strong> Verify hall tickets 48 hours before departure. Many exam halls are located on OMR outskirts with tricky transit patterns.</li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "library",
+                            title: "Library Rules & Workspace",
+                            badge: "Silent Zone",
+                            badgeColor: "text-emerald-400 bg-emerald-950/40 border-emerald-800/50",
+                            size: "col-span-1",
+                            quote: "Scan ID cards and stay strictly quiet on top floors.",
+                            summary: "Access premium digital research workstations and clean workspaces.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>The institutional library is a world-class resource if you follow its basic courtesy codes:</p>
+                                    <ul class='list-disc pl-5 space-y-1.5'>
+                                        <li>Always scan your physical student ID card at the electronic turnstile.</li>
+                                        <li>Strict silence is maintained on the upper mezzanine levels. It's the ultimate quiet zone for exam prep.</li>
+                                        <li>Avoid keeping food items on study tables; library wardens inspect the desks regularly.</li>
+                                    </ul>
+                                </div>
+                            `
+                        }
+                    ]
+                },
+                hostel: {
+                    id: "hostel",
+                    title: "Hostel Life & Regulations",
+                    accent: "orange",
+                    accentHex: "#f97316",
+                    icon: "fa-hotel",
+                    banner: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=1200&q=80",
+                    description: "Step-by-step procedures to request Outpasses, handle Curfews, set up Wi-Fi, and evaluate cellular signals.",
+                    cards: [
+                        {
+                            id: "outpass-proc",
+                            title: "Hostel Outpass Procedures",
+                            badge: "Outpass Portal",
+                            badgeColor: "text-orange-400 bg-orange-950/40 border-orange-800/50",
+                            size: "col-span-1 md:col-span-2 row-span-1",
+                            quote: "Apply at least 4 hours ahead on the portal.",
+                            summary: "Avoid gateway holdups. Learn the digital steps to secure outing approvals.",
+                            details: `
+                                <div class='space-y-3'>
+                                    <p class='text-xs text-stone-300'>To exit campus boundaries legally, follow this sequence:</p>
+                                    <ol class='list-decimal pl-5 space-y-2 text-xs text-stone-300'>
+                                        <li>Log onto your student ERP portal and submit either an 'Outing Outpass' or 'Home Outpass'.</li>
+                                        <li>Secure approval from your assigned Faculty Advisor. Send a polite request if it stays pending.</li>
+                                        <li>The automated system will call or text your registered parent's number for verification. Ensure they are expecting it!</li>
+                                        <li>Once approved, present your digital QR pass at the security desk to exit.</li>
+                                    </ol>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "curfew-rules",
+                            title: "Curfew & Late Rules",
+                            badge: "9:00 PM Sharp",
+                            badgeColor: "text-rose-400 bg-rose-950/40 border-rose-800/50",
+                            size: "col-span-1",
+                            quote: "Warnings on first breach, parent calls on second.",
+                            summary: "Understand lock-in guidelines and curfew checks on residential blocks.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>Campus security prioritizes resident safety with strict guidelines:</p>
+                                    <ul class='list-disc pl-5 space-y-2'>
+                                        <li><strong>In-And-Out Curfew:</strong> High gates close at <strong>9:00 PM sharp</strong>. Missing the count gets logged in the warden's roster.</li>
+                                        <li><strong>No Birthday Chaos:</strong> Due to past administrative restrictions, rough birthday rituals (like cake smearing or water throwing) are banned inside the hallways. Celebrate neatly in designated spots.</li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "wifi-info",
+                            title: "SNUC Wi-Fi & VPN Limits",
+                            badge: "Portal Config",
+                            badgeColor: "text-blue-400 bg-blue-950/40 border-blue-800/50",
+                            size: "col-span-1",
+                            quote: "Proxy login details and blocked ports list.",
+                            summary: "Onboarding details, blocked sites, and troubleshooting connection drops.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>Access high-speed campus internet using these setups:</p>
+                                    <ul class='list-disc pl-5 space-y-1.5'>
+                                        <li>Connect to the official **SNUC-Student** SSID.</li>
+                                        <li>Authenticate using your custom credentials provided during admission.</li>
+                                        <li><strong>Blocked Content:</strong> Steam download tunnels, common VPN proxies, and illegal torrent repositories are blocked on the central firewall. Avoid using them to prevent your portal account from being locked.</li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "network-provider",
+                            title: "Network Provider Signals",
+                            badge: "Carrier Stats",
+                            badgeColor: "text-purple-400 bg-purple-950/40 border-purple-800/50",
+                            size: "col-span-1",
+                            quote: "Airtel is strongest; Jio is moderate.",
+                            summary: "Senior rating reviews of cellular signals inside concrete hostel blocks.",
+                            details: `
+                                <div class='space-y-2 text-xs text-stone-300'>
+                                    <p>Signal performance inside concrete hostel walls:</p>
+                                    <ul class='list-disc pl-5 space-y-1.5'>
+                                        <li><strong>Airtel:</strong> Best overall speeds, especially near windows and balconies.</li>
+                                        <li><strong>Jio:</strong> Stable outside, but bandwidth can drop inside lower levels.</li>
+                                        <li><strong>BSNL / Vi:</strong> Unreliable cell reception indoors. Keep an alternative hotspot handy.</li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "hostel-contacts",
+                            title: "Hostel Contacts & Bus Routes",
+                            badge: "Directories",
+                            badgeColor: "text-amber-400 bg-amber-950/40 border-amber-800/50",
+                            size: "col-span-1",
+                            quote: "Emergency warden details and shuttle frequencies.",
+                            summary: "Direct contacts for hostel offices, plus campus bus timetables.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>Essential contacts and local timetables:</p>
+                                    <ul class='list-disc pl-5 space-y-1.5'>
+                                        <li><strong>Residential Shuttle:</strong> Free shuttle runs from the main hostel blocks to Academic Block 1 every 15 minutes between 7:50 AM - 8:45 AM.</li>
+                                        <li><strong>Warden Desk:</strong> Available at the hostel ground-floor lobby. Log maintenance tickets directly in their ledger for quick support.</li>
+                                    </ul>
+                                </div>
+                            `
+                        }
+                    ]
+                },
+                student_life: {
+                    id: "student_life",
+                    title: "Quality of Life & Advices",
+                    accent: "amber",
+                    accentHex: "#f59e0b",
+                    icon: "fa-rocket",
+                    banner: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80",
+                    description: "Learn how to get involved in student clubs, follow sports codes, connect with seniors, and check local guidelines.",
+                    cards: [
+                        {
+                            id: "clubs-involvement",
+                            title: "Clubs Directory & Community",
+                            badge: "Explore",
+                            badgeColor: "text-amber-400 bg-amber-950/40 border-amber-800/50",
+                            size: "col-span-1 md:col-span-2 row-span-1",
+                            quote: "Involve yourself in clubs and events. Come out and explore!",
+                            summary: "How to apply, clear recruitments, and balance clubs with study tracks.",
+                            details: `
+                                <div class='space-y-3'>
+                                    <blockquote class='border-l-4 border-amber-500 pl-4 italic text-stone-400 text-xs'>
+                                        "Involve yourself in clubs and events. Come out and explore! Do not hesitate to strike up conversations and expand your student network early."
+                                    </blockquote>
+                                    <p class='text-xs text-stone-300 leading-relaxed'>Clubs are the heartbeat of the campus. From technical communities (Webdev, AI/ML, Robotics) to cultural chapters (Music, Drama, Art), active participation helps you build strong leadership experience. Recruitment cycles open within the first month of college!</p>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "sports-facilities",
+                            title: "Sports & Gym Infrastructure",
+                            badge: "Gym & Court",
+                            badgeColor: "text-purple-400 bg-purple-950/40 border-purple-800/50",
+                            size: "col-span-1",
+                            quote: "Gym access rules and indoor court grids.",
+                            summary: "Operating hours, equipment catalogs, and booking systems for courts.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>SNUC offers high-quality sports facilities for all students:</p>
+                                    <ul class='list-disc pl-5 space-y-1.5'>
+                                        <li><strong>Gymnasium:</strong> Free access with modern weight areas. Open 6:00 AM - 8:30 AM and 4:30 PM - 8:00 PM daily.</li>
+                                        <li><strong>Indoor Courts:</strong> Excellent facilities for badminton, squash, and table tennis matches.</li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "sports-dresscode",
+                            title: "Sports Complex Dress Code",
+                            badge: "Strict Mandate",
+                            badgeColor: "text-rose-400 bg-rose-950/40 border-rose-800/50",
+                            size: "col-span-1",
+                            quote: "Strictly non-marking shoes inside wooden courts.",
+                            summary: "Avoid disciplinary fees. Learn the footwear requirements and rules.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>To keep the facilities in top shape, the sports department enforces these codes strictly:</p>
+                                    <ul class='list-disc pl-5 space-y-2'>
+                                        <li><strong>Footwear:</strong> Strictly <strong>non-marking sports shoes</strong> are required inside the wooden squash and badminton courts. Standard dark-soled running shoes are not allowed.</li>
+                                        <li><strong>Attire:</strong> Appropriate athletic track pants or shorts are mandatory. Casual clothing like jeans or cargos is not permitted inside the gym or court areas.</li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "networking-advice",
+                            title: "Senior-Junior Networking Tips",
+                            badge: "Connections",
+                            badgeColor: "text-emerald-400 bg-emerald-950/40 border-emerald-800/50",
+                            size: "col-span-1",
+                            quote: "Don't have resistance in talking with people and network early.",
+                            summary: "Join student study pools, notes directories, and safe senior loops.",
+                            details: `
+                                <div class='space-y-3'>
+                                    <p class='text-xs text-stone-300 leading-relaxed'>Developing a strong peer network early is incredibly helpful. Seniors can guide you through tough subjects, share previous study guides, and help you find great learning resources.</p>
+                                    <blockquote class='border-l-4 border-emerald-500 pl-4 italic text-stone-400 text-xs'>
+                                        "Do not have resistance in talking with a lot of people and network early. We are always happy to share our notes and guidance."
+                                    </blockquote>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "bunking-tips",
+                            title: "How to Safely Bunk Classes",
+                            badge: "Bunking Guide",
+                            badgeColor: "text-orange-400 bg-orange-950/40 border-orange-800/50",
+                            size: "col-span-1",
+                            quote: "Keep a clean log and save your buffer.",
+                            summary: "Tactical tips from seniors on maintaining a safe attendance cushion.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>While we strongly advise attending all lectures, we know that sometimes seasonal coughs or coding deadlines pop up. Here's how seniors manage attendance buffers:</p>
+                                    <ul class='list-disc pl-5 space-y-1.5'>
+                                        <li><strong>Save your buffer:</strong> Do not use up your absences early in the semester. Keep them for the end of the term when you'll really need that study time.</li>
+                                        <li><strong>Track manually:</strong> Never rely on guesswork. Maintain an accurate log of missed lectures for each subject.</li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "restriction-history",
+                            title: "Campus Lore & Rules History",
+                            badge: "History Room",
+                            badgeColor: "text-blue-400 bg-blue-950/40 border-blue-800/50",
+                            size: "col-span-1",
+                            quote: "Why certain rules were born (forest lines & curfew logic).",
+                            summary: "Learn the backstory behind the campus guidelines.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>Ever wondered why certain rules are so strict? Here are some interesting bits of campus history:</p>
+                                    <ul class='list-disc pl-5 space-y-2'>
+                                        <li><strong>Path Curfews:</strong> Evening restrictions on walking near the perimeter paths were introduced after students ventured too close to the outer forest areas late at night.</li>
+                                        <li><strong>Birthday Celebrations:</strong> Rules keeping celebrations indoors in common rooms were established to keep residential blocks peaceful during late-night study weeks.</li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "pet-archives",
+                            title: "The Campus Pet Archives",
+                            badge: "Pet Homage",
+                            badgeColor: "text-pink-400 bg-pink-950/40 border-pink-800/50",
+                            size: "col-span-1",
+                            quote: "Meet Sambar and Whiskers, our campus companions.",
+                            summary: "Say hello to our friendly campus indie dogs and cats.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>The campus is home to several friendly animals cared for by the community:</p>
+                                    <ul class='space-y-3'>
+                                        <li class='p-3 bg-stone-900 border border-stone-800 rounded-xl flex items-center gap-3'>
+                                            <span class='text-2xl'>🐕</span>
+                                            <div>
+                                                <strong class='text-stone-100 block'>Sambar (The Indie King)</strong>
+                                                <span class='text-2xs text-stone-400'>Often seen resting near the central cafeteria. Friendly and loves biscuits.</span>
+                                            </div>
+                                        </li>
+                                        <li class='p-3 bg-stone-900 border border-stone-800 rounded-xl flex items-center gap-3'>
+                                            <span class='text-2xl'>🐈</span>
+                                            <div>
+                                                <strong class='text-stone-100 block'>Whiskers (The Library Guardian)</strong>
+                                                <span class='text-2xs text-stone-400'>A calm calico cat roaming the library bushes. Very photogenic.</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            `
+                        }
+                    ]
+                },
+                nearby: {
+                    id: "nearby",
+                    title: "Nearby Locations & Utilities",
+                    accent: "terracotta",
+                    accentHex: "#ea580c",
+                    icon: "fa-map-location-dot",
+                    banner: "https://images.unsplash.com/photo-1513829096999-4978602297f7?auto=format&fit=crop&w=1200&q=80",
+                    description: "Find local highway restaurants, city transit options, cycle repair shops, and driving schools.",
+                    cards: [
+                        {
+                            id: "college-map",
+                            title: "Campus Layout & Map",
+                            badge: "Navigation",
+                            badgeColor: "text-blue-400 bg-blue-950/40 border-blue-800/50",
+                            size: "col-span-1",
+                            quote: "Quick mapping guides to classrooms.",
+                            summary: "Locate academic blocks, hostels, and sports hubs easily.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>A quick guide for navigating the main campus areas:</p>
+                                    <ul class='list-disc pl-5 space-y-1.5'>
+                                        <li><strong>Academic Blocks 1 & 2:</strong> Main classrooms, labs, departmental offices, and administrative desks.</li>
+                                        <li><strong>The Food Plaza:</strong> Centrally located right next to the sports fields.</li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "mtc-routes",
+                            title: "Major MTC Routes",
+                            badge: "Local Bus",
+                            badgeColor: "text-emerald-400 bg-emerald-950/40 border-emerald-800/50",
+                            size: "col-span-1",
+                            quote: "Bus 519 and 102 tracks.",
+                            summary: "Key public bus routes connecting Kalavakkam with central Chennai.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>Get around OMR and the city easily with these popular bus routes:</p>
+                                    <ul class='list-disc pl-5 space-y-2'>
+                                        <li><strong>Bus 519:</strong> Kalavakkam to T. Nagar. A direct and very popular route for weekend shopping trips.</li>
+                                        <li><strong>Bus 102:</strong> Kalavakkam to Broadway. Links directly through central OMR corridors.</li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "culinary-map",
+                            title: "The Culinary Map (Eats & Stalls)",
+                            badge: "Eateries",
+                            badgeColor: "text-orange-400 bg-orange-950/40 border-orange-800/50",
+                            size: "col-span-1 md:col-span-2 row-span-1",
+                            quote: "Campus juice corners and off-campus highway spots.",
+                            summary: "Insiders guide to on-campus food stalls and tasty highway spots.",
+                            details: `
+                                <div class='space-y-4 text-xs text-stone-300'>
+                                    <div>
+                                        <h5 class='font-bold text-orange-400 uppercase tracking-wider mb-1'>On-Campus Spots:</h5>
+                                        <p>The central food plaza offers delicious evening snacks, fresh juices, and hot parottas during study breaks.</p>
+                                    </div>
+                                    <div>
+                                        <h5 class='font-bold text-orange-400 uppercase tracking-wider mb-1'>Off-Campus Gems:</h5>
+                                        <p>Head to Kelambakkam town (just 5 minutes away) for great local shawarmas and highway food stalls.</p>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "weekend-itinerary",
+                            title: "Weekend Plans & Sightseeing",
+                            badge: "Day Trips",
+                            badgeColor: "text-purple-400 bg-purple-950/40 border-purple-800/50",
+                            size: "col-span-1",
+                            quote: "ECR beaches, Kovalam surfing, and local malls.",
+                            summary: "Fun sightseeing ideas and local getaways for your free days.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>Plan a refreshing weekend trip along the East Coast Road:</p>
+                                    <ul class='list-disc pl-5 space-y-2'>
+                                        <li><strong>Kovalam Beach:</strong> Located 15 minutes away, famous for surfing classes and scenic sunset views.</li>
+                                        <li><strong>The Marina Mall:</strong> Your go-to spot on OMR for movies, restaurants, and shopping.</li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "repairs-driving",
+                            title: "Cycle Repairs & Driving Lessons",
+                            badge: "Local Services",
+                            badgeColor: "text-amber-400 bg-amber-950/40 border-amber-800/50",
+                            size: "col-span-1",
+                            quote: "Bicycle fixes near the gate and local driving schools.",
+                            summary: "Where to fix your bike and sign up for driving classes.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>Useful services located right near campus:</p>
+                                    <ul class='list-disc pl-5 space-y-2'>
+                                        <li><strong>Cycle Repair Shop:</strong> Located right near the hostel gate. Quick fixes for punctures, brakes, and chains.</li>
+                                        <li><strong>Driving Schools:</strong> Several local driving schools near Kelambakkam offer student discount rates and flexible lesson slots.</li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "online-deliveries",
+                            title: "Online Deliveries & Gate Collection",
+                            badge: "Courier Drop",
+                            badgeColor: "text-blue-400 bg-blue-950/40 border-blue-800/50",
+                            size: "col-span-1",
+                            quote: "Parcels must be collected at Gate 1 or Gate 2.",
+                            summary: "Rules for picking up Amazon, Flipkart, and food deliveries.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>Getting your packages delivered safely on campus:</p>
+                                    <ul class='list-disc pl-5 space-y-2'>
+                                        <li><strong>Gate Pickup:</strong> Courier delivery vehicles are not allowed past the residential gates. All packages must be picked up directly at the **Gate 1 or Gate 2 security checkpoints**.</li>
+                                        <li><strong>Food App Deliveries:</strong> Coordinate with Swiggy/Zomato riders to meet them at the main entrance gate barrier.</li>
+                                    </ul>
+                                </div>
+                            `
+                        }
+                    ]
+                },
+                emergency: {
+                    id: "emergency",
+                    title: "Emergency & Wellness",
+                    accent: "rosegold",
+                    accentHex: "#ec4899",
+                    icon: "fa-circle-exclamation",
+                    banner: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80",
+                    description: "Access campus health resources, the Student Counsellor, emergency transport, and scholarship aid.",
+                    cards: [
+                        {
+                            id: "clinic-hub",
+                            title: "Clinic & Doctor Appointments",
+                            badge: "Medical Room",
+                            badgeColor: "text-emerald-400 bg-emerald-950/40 border-emerald-800/50",
+                            size: "col-span-1 md:col-span-2 row-span-1",
+                            quote: "On-campus medical aid and free primary medicines.",
+                            summary: "Doctor consultation hours, available medicines, and clinic setups.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>The on-campus clinic is fully equipped to handle basic health needs and immediate care:</p>
+                                    <ul class='list-disc pl-5 space-y-2'>
+                                        <li><strong>Doctor Visits:</strong> General practitioners are available daily between 3:00 PM - 5:00 PM.</li>
+                                        <li><strong>Free Medicines:</strong> Common over-the-counter cold tablets, painkillers, and band-aids are provided free of charge when you show your student ID card.</li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "student-counsellor",
+                            title: "Student Counsellor Desk",
+                            badge: "Safe Space",
+                            badgeColor: "text-pink-400 bg-pink-950/40 border-pink-800/50",
+                            size: "col-span-1",
+                            quote: "Confidential guidance sessions with Ilakkiya L Ma'am.",
+                            summary: "Guidance paths for academic, social, or emotional adjustments.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>Adapting to college life can sometimes feel challenging. Helpful and confidential guidance is always here for you:</p>
+                                    <div class='p-4 bg-stone-900 border border-pink-500/10 rounded-2xl text-center mt-2'>
+                                        <strong class='text-stone-100 text-sm block'>Mrs. Ilakkiya L</strong>
+                                        <span class='text-xs text-pink-400 block mb-1 font-semibold uppercase tracking-wider'>Student Counsellor</span>
+                                        <p class='text-2xs text-stone-400 mb-2'>Confidential personal guidance, academic support, and wellness exercises.</p>
+                                        <span class='text-2xs font-mono bg-stone-950 px-2 py-1 border border-stone-800 rounded text-stone-300 inline-block'>Office: Academic Block 1, First Floor</span>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "ssn-helpdesk",
+                            title: "SSN / SNUC Helpdesk Portal",
+                            badge: "Repairs",
+                            badgeColor: "text-blue-400 bg-blue-950/40 border-blue-800/50",
+                            size: "col-span-1",
+                            quote: "Log tickets for IT, electrical, or plumbing maintenance.",
+                            summary: "How to log maintenance requests for campus facilities.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>Need something in your room or wing fixed? Use the institutional ticketing portal:</p>
+                                    <ol class='list-decimal pl-5 space-y-2'>
+                                        <li>Log onto the official **Helpdesk Portal** using your student credentials.</li>
+                                        <li>Select your category (e.g., IT, Electrical, Infrastructure).</li>
+                                        <li>Submit your ticket. Maintenance staff usually address requests within 24-48 hours.</li>
+                                    </ol>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "medical-directory",
+                            title: "Specialized Medical Directory",
+                            badge: "Local ER",
+                            badgeColor: "text-rose-400 bg-rose-950/40 border-rose-800/50",
+                            size: "col-span-1",
+                            quote: "Chettinad Health City and nearby dental clinics.",
+                            summary: "External hospitals and specialized clinics located close to campus.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>For specialized medical care or emergencies outside our campus clinic:</p>
+                                    <ul class='space-y-2'>
+                                        <li class='p-2 bg-stone-900 border border-stone-800 rounded-lg'>
+                                            <strong class='text-pink-400 block'>Chettinad Health City (OMR)</strong>
+                                            <span>Full 24/7 multi-specialty trauma and general emergency care (15 mins from campus).</span>
+                                        </li>
+                                        <li class='p-2 bg-stone-900 border border-stone-800 rounded-lg'>
+                                            <strong class='text-pink-400 block'>Local Dental & Skin Care</strong>
+                                            <span>Specialized dermatology and dentistry clinics are located in Kelambakkam town.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            id: "scholarships-aid",
+                            title: "SIRS & Other Scholarships",
+                            badge: "Financial Aid",
+                            badgeColor: "text-amber-400 bg-amber-950/40 border-amber-800/50",
+                            size: "col-span-1",
+                            quote: "Navigate SIRS systems and Buddy4Study platforms.",
+                            summary: "Guide to institutional scholarships and external funding aggregate tools.",
+                            details: `
+                                <div class='space-y-3 text-xs text-stone-300'>
+                                    <p>Helpful resources for tracking financial aid options:</p>
+                                    <ul class='list-disc pl-5 space-y-2'>
+                                        <li><strong>SIRS Merit Scholarships:</strong> Awarded annually based on academic or athletic excellence. Applications open via the admin office in September.</li>
+                                        <li><strong>Buddy4Study Portal:</strong> A fantastic external platform for checking private, corporate, and national scholarship programs.</li>
+                                    </ul>
+                                </div>
+                            `
+                        }
+                    ]
+                }
+            }
+        };
+
+let CURRENT_VIEW = 'home';
+let ACTIVE_CATEGORY = null;
+
+window.onload = function() {
+    renderMasterCategories();
+    setupSearchIndex();
+};
+
+// Visual identity per category — food doodle, colors, compartment size
+const CATEGORY_VISUALS = {
+    academics:    { emoji: '📚', food: 'Rice & Curry',   icon: 'fa-graduation-cap', bg: 'bg-clay',  tint: 'bg-[#FBE3D4]', ring: 'border-clay',  text: 'text-clayDeep',  tape: 'bg-clay' },
+    hostel:       { emoji: '🏠', food: 'Side Dumplings',  icon: 'fa-house',          bg: 'bg-sage',  tint: 'bg-[#E9EEDD]', ring: 'border-sage',  text: 'text-sageDeep',  tape: 'bg-sage' },
+    student_life: { emoji: '✨', food: 'Sweet Treats',    icon: 'fa-star',           bg: 'bg-yolk',  tint: 'bg-[#FBEFD1]', ring: 'border-yolk',  text: 'text-[#8A6412]', tape: 'bg-yolk' },
+    nearby:       { emoji: '🗺️', food: 'Pickled Sides',   icon: 'fa-map-location-dot', bg: 'bg-sky', tint: 'bg-[#DFEDF0]', ring: 'border-sky',   text: 'text-[#2E6274]', tape: 'bg-sky' },
+    emergency:    { emoji: '🩹', food: 'First-Aid Pouch', icon: 'fa-kit-medical',    bg: 'bg-tomato', tint: 'bg-[#FBE1DA]', ring: 'border-tomato', text: 'text-[#B4432A]', tape: 'bg-tomato' },
+};
+
+function renderMasterCategories() {
+    const grid = document.getElementById('master-categories-grid');
+    grid.innerHTML = '';
+
+    Object.values(DATABASE.categories).forEach(cat => {
+        const v = CATEGORY_VISUALS[cat.id] || CATEGORY_VISUALS.academics;
+        const isBig = cat.id === 'academics';
+
+        const cardHtml = `
+            <div onclick="openCategoryPage('${cat.id}')" class="lb-${cat.id} box-card ${v.tint} relative overflow-hidden rounded-[1.75rem] flex flex-col justify-between p-5 sm:p-6 cursor-pointer group border-crust min-h-[150px]">
+                <div class="absolute -right-4 -bottom-4 text-7xl opacity-20 group-hover:opacity-35 transition-opacity select-none pointer-events-none">${v.emoji}</div>
+                <div class="absolute top-3 right-3 text-2xl steam-doodle select-none pointer-events-none">${isBig ? '💭' : ''}</div>
+
+                <div class="relative z-10">
+                    <div class="flex items-center gap-2.5 mb-3">
+                        <span class="w-10 h-10 rounded-xl flex items-center justify-center text-paper ${v.bg} border-2 border-crust shadow-soft">
+                            <i class="fa-solid ${v.icon} text-sm"></i>
+                        </span>
+                        <span class="text-3xs uppercase tracking-widest font-extrabold ${v.text}">${v.food}</span>
+                    </div>
+
+                    <h3 class="${isBig ? 'text-2xl sm:text-3xl' : 'text-lg'} font-display font-semibold text-crust group-hover:${v.text} transition-colors">${cat.title}</h3>
+                    <p class="text-xs sm:text-sm text-crust/70 mt-2 ${isBig ? 'max-w-md' : 'line-clamp-2'}">${cat.description}</p>
+                </div>
+
+                <div class="relative z-10 flex items-center gap-1.5 text-crust text-2xs sm:text-xs font-extrabold uppercase tracking-wider mt-4 opacity-70 group-hover:opacity-100 transition-opacity">
+                    Open compartment <i class="fa-solid fa-arrow-right text-3xs group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </div>
+        `;
+        grid.innerHTML += cardHtml;
+    });
+}
+
+function navigateTo(viewName) {
+    const homeView = document.getElementById('view-home');
+    const categoryView = document.getElementById('view-category');
+
+    if(viewName === 'home') {
+        categoryView.classList.add('hidden');
+        homeView.classList.remove('hidden');
+        CURRENT_VIEW = 'home';
+        ACTIVE_CATEGORY = null;
+    } else if(viewName === 'category') {
+        homeView.classList.add('hidden');
+        categoryView.classList.remove('hidden');
+        CURRENT_VIEW = 'category';
+    }
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function openCategoryPage(catId) {
+    const category = DATABASE.categories[catId];
+    if(!category) return;
+
+    ACTIVE_CATEGORY = catId;
+    const v = CATEGORY_VISUALS[catId] || CATEGORY_VISUALS.academics;
+
+    document.getElementById('category-page-title').innerText = category.title;
+    document.getElementById('category-page-desc').innerText = category.description;
+
+    const bentoGrid = document.getElementById('bento-box-grid');
+    bentoGrid.innerHTML = '';
+
+    // Generate Bento Grid Card Layout elements dynamically with rich visible text & quotes
+    category.cards.forEach((card, idx) => {
+        const rotate = ['tape-rotate-1', 'tape-rotate-2', 'tape-rotate-3'][idx % 3];
+        const badgeClass = card.badgeColor || 'text-crust bg-cream border-crust/20';
+        const bentoHtml = `
+            <div onclick="openCardDetail('${catId}', '${card.id}')" class="box-card group relative flex flex-col justify-between p-5 rounded-[1.5rem] cursor-pointer ${card.size || 'col-span-1'} border-crust bg-paper">
+                <div class="relative z-10 h-full flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="washi ${rotate} inline-block text-3xs uppercase tracking-widest font-extrabold px-2.5 py-1 rounded-full ${v.bg} text-paper border-2 border-crust">
+                                ${card.badge || 'INFO'}
+                            </span>
+                        </div>
+                        <h4 class="text-md font-display font-semibold text-crust group-hover:${v.text} transition-colors line-clamp-2">${card.title}</h4>
+                        <p class="text-xs text-crust/65 mt-2 line-clamp-2 leading-relaxed">${card.summary}</p>
+
+                        <div class="mt-2.5 p-2.5 bg-cream border-2 border-dashed border-crust/20 rounded-xl">
+                            <p class="text-3xs text-crust/70 italic line-clamp-2 font-hand text-sm">
+                                <i class="fa-solid fa-quote-left ${v.text} mr-1 text-4xs"></i>${card.quote || 'Tap for the full scoop.'}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between mt-3">
+                        <span class="text-4xs uppercase tracking-wider text-crust/50 group-hover:text-crust font-extrabold transition-colors">Open the box</span>
+                        <span class="w-7 h-7 rounded-full bg-cream border-2 border-crust/20 text-crust/60 group-hover:${v.text} group-hover:border-crust flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-3xs"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        `;
+        bentoGrid.innerHTML += bentoHtml;
+    });
+
+    navigateTo('category');
+}
+
+function openCardDetail(catId, cardId) {
+    const cat = DATABASE.categories[catId];
+    const card = cat.cards.find(c => c.id === cardId);
+    if(!card) return;
+
+    const v = CATEGORY_VISUALS[catId] || CATEGORY_VISUALS.academics;
+    const accentHex = cat.accentHex || '#C1502E';
+
+    document.getElementById('modal-accent-line').className = `h-2 w-full ${v.bg}`;
+
+    const tag = document.getElementById('modal-category-tag');
+    tag.innerText = cat.title;
+    tag.className = `text-2xs uppercase tracking-widest font-extrabold px-2.5 py-1 rounded-full washi border-2 border-crust text-paper mb-3 inline-block ${v.bg}`;
+
+    document.getElementById('modal-title').innerText = card.title;
+    document.getElementById('modal-body-content').innerHTML = card.details;
+
+    document.getElementById('detail-modal').classList.remove('hidden');
+}
+
+function closeModal() {
+    document.getElementById('detail-modal').classList.add('hidden');
+}
+
+function openEmergencyModal() {
+    document.getElementById('emergency-modal').classList.remove('hidden');
+}
+
+function closeEmergencyModal() {
+    document.getElementById('emergency-modal').classList.add('hidden');
+}
+
+let searchIndex = [];
+
+function setupSearchIndex() {
+    searchIndex = [];
+    Object.values(DATABASE.categories).forEach(cat => {
+        cat.cards.forEach(card => {
+            searchIndex.push({
+                categoryId: cat.id,
+                categoryTitle: cat.title,
+                cardId: card.id,
+                title: card.title,
+                summary: card.summary,
+            });
+        });
+    });
+}
+
+function handleSearch(query) {
+    const dropdown = document.getElementById('search-dropdown');
+    if(!query || query.trim() === '') {
+        dropdown.classList.add('hidden');
+        return;
+    }
+
+    const cleanQuery = query.toLowerCase().trim();
+    const matches = searchIndex.filter(item =>
+        item.title.toLowerCase().includes(cleanQuery) ||
+        item.summary.toLowerCase().includes(cleanQuery) ||
+        item.categoryTitle.toLowerCase().includes(cleanQuery)
+    ).slice(0, 5);
+
+    if(matches.length === 0) {
+        dropdown.innerHTML = `<div class="p-4 text-xs text-crust/50 text-center">No matching survival tips found in the lunchbox.</div>`;
+    } else {
+        dropdown.innerHTML = '';
+        matches.forEach(match => {
+            const v = CATEGORY_VISUALS[match.categoryId] || CATEGORY_VISUALS.academics;
+            const row = `
+                <div onclick="selectSearchResult('${match.categoryId}', '${match.cardId}')" class="p-3 border-b-2 border-crust/10 hover:bg-cream cursor-pointer transition-colors">
+                    <span class="text-3xs uppercase tracking-widest ${v.text} block font-extrabold mb-0.5">${match.categoryTitle}</span>
+                    <strong class="text-xs sm:text-sm text-crust block line-clamp-1">${match.title}</strong>
+                    <p class="text-2xs text-crust/60 mt-0.5 line-clamp-1">${match.summary}</p>
+                </div>
+            `;
+            dropdown.innerHTML += row;
+        });
+    }
+    dropdown.classList.remove('hidden');
+}
+
+function selectSearchResult(catId, cardId) {
+    document.getElementById('global-search').value = '';
+    document.getElementById('search-dropdown').classList.add('hidden');
+
+    openCategoryPage(catId);
+    setTimeout(() => {
+        openCardDetail(catId, cardId);
+    }, 350);
+}
+
+function runBunkCalc() {
+    const attendedInput = document.getElementById('calc-attended');
+    const totalInput = document.getElementById('calc-total');
+    const resultBox = document.getElementById('calc-result');
+
+    const attended = parseInt(attendedInput.value) || 0;
+    const total = parseInt(totalInput.value) || 0;
+
+    if (total < 0 || attended < 0 || attended > total) {
+        resultBox.innerHTML = `
+            <div class="text-rose-500 font-bold flex items-center gap-1">
+                <i class="fa-solid fa-circle-xmark"></i> Invalid Values Input
+            </div>
+            <p class="text-2xs text-stone-400 mt-1">Attended classes cannot exceed total conducted classes. Try entering logical values!</p>
+        `;
+        resultBox.classList.remove('hidden');
+        return;
+    }
+
+    const currentPercent = total > 0 ? (attended / total) * 100 : 100;
+    let resultMessage = '';
+
+    if (currentPercent >= 75) {
+        const safeBunks = Math.floor((4 / 3) * attended - total);
+        if (safeBunks > 0) {
+            resultMessage = `
+                <div class="text-emerald-400 font-bold flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-check"></i> Safe Margin! (Currently ${currentPercent.toFixed(1)}%)
+                </div>
+                <p class="text-xs text-stone-300 mt-2">You can safely skip (bunk) up to <strong class="text-emerald-400 text-sm font-extrabold">${safeBunks}</strong> consecutive classes without dropping below the mandatory 75% limit.</p>
+            `;
+        } else {
+            resultMessage = `
+                <div class="text-amber-400 font-bold flex items-center gap-1.5">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Borderline Warning! (Currently ${currentPercent.toFixed(1)}%)
+                </div>
+                <p class="text-xs text-stone-300 mt-2">You are precisely near the limit. You **cannot skip any more classes** without dipping below 75%.</p>
+            `;
+        }
+    } else {
+        const requiredAttend = Math.max(0, (3 * total) - (4 * attended));
+        resultMessage = `
+            <div class="text-rose-500 font-bold flex items-center gap-1.5">
+                <i class="fa-solid fa-circle-exclamation animate-pulse"></i> Shortage Action Required! (Currently ${currentPercent.toFixed(1)}%)
+            </div>
+            <p class="text-xs text-stone-300 mt-2">Your attendance is currently below safety criteria. You must attend the next <strong class="text-rose-400 text-sm font-extrabold">${requiredAttend}</strong> classes consecutively to recover above 75%.</p>
+        `;
+    }
+
+    resultBox.innerHTML = resultMessage;
+    resultBox.classList.remove('hidden');
+}
+    </script>
+</body>
+</html>
