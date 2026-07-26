@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/css/styles.css">
 
     <script>
         tailwind.config = {
@@ -42,159 +43,10 @@
         }
     </script>
 
-    <style>
-        :root {
-            --paper-dot: rgba(74, 58, 44, 0.07);
-        }
 
-        html, body { background-color: #FBF1DE; }
-
-        body {
-            color: #4A3A2C;
-            background-image:
-                radial-gradient(circle, var(--paper-dot) 1.4px, transparent 1.4px);
-            background-size: 22px 22px;
-            background-position: -4px -4px;
-            background-attachment: fixed;
-        }
-
-        /* soft grain overlay for warmth */
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            background:
-                radial-gradient(ellipse at 8% 10%, rgba(232,169,58,0.10) 0%, transparent 45%),
-                radial-gradient(ellipse at 92% 85%, rgba(124,139,94,0.10) 0%, transparent 45%);
-        }
-
-        /* Hand-drawn wobble border via SVG filter */
-        .wobbly { filter: url(#wobble); }
-
-        /* Cozy compartment card base */
-        .box-card {
-            background: #FFFDF8;
-            border: 2.5px solid #4A3A2C;
-            border-radius: 26px;
-            box-shadow: 0 6px 0 0 rgba(74,58,44,0.14), 0 6px 18px rgba(74,58,44,0.10);
-            transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s cubic-bezier(0.16,1,0.3,1);
-        }
-        .box-card:hover {
-            transform: translateY(-4px) rotate(-0.3deg);
-            box-shadow: 0 10px 0 0 rgba(74,58,44,0.14), 0 16px 30px rgba(74,58,44,0.14);
-        }
-        .box-card:active { transform: translateY(-1px); }
-
-        /* Dashed stitch divider, like compartment seams */
-        .stitch-divider {
-            border-top: 2.5px dashed rgba(74,58,44,0.25);
-        }
-
-        /* Washi tape label */
-        .washi {
-            background: repeating-linear-gradient(135deg, rgba(255,255,255,0.35) 0 6px, rgba(255,255,255,0.12) 6px 12px);
-            box-shadow: 0 2px 4px rgba(74,58,44,0.18);
-        }
-
-        /* Modal - recipe card feel */
-        .recipe-card {
-            background: #FFFDF8;
-            border: 2.5px solid #4A3A2C;
-            box-shadow: 0 18px 0 0 rgba(74,58,44,0.06), 0 20px 45px rgba(74,58,44,0.25);
-        }
-
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #FBF1DE; }
-        ::-webkit-scrollbar-thumb { background: #E3CFA3; border-radius: 9999px; border: 2px solid #FBF1DE; }
-        ::-webkit-scrollbar-thumb:hover { background: #C1502E; }
-
-        /* Lunchbox tray grid */
-        .lunchbox-grid {
-            display: grid;
-            gap: 1.1rem;
-            grid-template-columns: repeat(1, 1fr);
-        }
-        @media (min-width: 768px) {
-            .lunchbox-grid {
-                grid-template-columns: repeat(3, 1fr);
-                grid-template-rows: repeat(3, minmax(150px, auto));
-                grid-template-areas:
-                    "a a b"
-                    "a a c"
-                    "d e c";
-            }
-            .lb-academics { grid-area: a; }
-            .lb-hostel { grid-area: b; }
-            .lb-student_life { grid-area: c; }
-            .lb-nearby { grid-area: d; }
-            .lb-emergency { grid-area: e; }
-        }
-
-        @keyframes steam-rise {
-            0%, 100% { transform: translateY(0) scaleY(1); opacity: 0.55; }
-            50% { transform: translateY(-6px) scaleY(1.08); opacity: 0.9; }
-        }
-        .steam-doodle { animation: steam-rise 3s ease-in-out infinite; transform-origin: bottom center; }
-
-        @keyframes jiggle {
-            0%, 100% { transform: rotate(-6deg) scale(1); }
-            50% { transform: rotate(6deg) scale(1.06); }
-        }
-        .pulse-emergency { animation: jiggle 1.6s ease-in-out infinite; }
-
-        .tape-rotate-1 { transform: rotate(-4deg); }
-        .tape-rotate-2 { transform: rotate(3deg); }
-        .tape-rotate-3 { transform: rotate(-2deg); }
-
-        @keyframes fade-pop {
-            0% { opacity: 0; transform: translateY(10px) scale(0.98); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .fade-pop { animation: fade-pop 0.35s cubic-bezier(0.16,1,0.3,1); }
-    </style>
+    
 </head>
-<style>
-    /* ===== Cozy remap for legacy dark-theme utility classes embedded in content ===== */
-    [class*="bg-stone-900"], [class*="bg-stone-950"] { background-color: #FBF1DE !important; }
-    [class*="border-stone-800"], [class*="border-stone-900"] { border-color: #E3CFA3 !important; }
-    [class*="text-stone-100"], [class*="text-stone-200"] { color: #3A2D22 !important; }
-    [class*="text-stone-300"] { color: #4A3A2C !important; }
-    [class*="text-stone-400"], [class*="text-stone-500"] { color: #7A6752 !important; }
-    [class*="text-white"] { color: #FFFDF8 !important; }
-    input[class*="text-white"] { color: #4A3A2C !important; }
 
-    [class*="bg-rose-950"], [class*="bg-red-950"] { background-color: #FBE3DC !important; border-color: #E3A793 !important; }
-    [class*="text-rose-400"], [class*="text-rose-500"], [class*="text-red-400"] { color: #B4432A !important; }
-    [class*="border-rose-800"], [class*="border-rose-500"], [class*="border-red-500"] { border-color: #E3A793 !important; }
-
-    [class*="bg-amber-950"] { background-color: #FBEDCB !important; border-color: #E3C077 !important; }
-    [class*="text-amber-400"] { color: #8A6412 !important; }
-    [class*="border-amber-800"], [class*="border-amber-500"] { border-color: #E3C077 !important; }
-
-    [class*="bg-orange-950"] { background-color: #FBE3CE !important; border-color: #E3AE7E !important; }
-    [class*="text-orange-400"] { color: #A0501F !important; }
-    [class*="border-orange-800"], [class*="border-orange-500"] { border-color: #E3AE7E !important; }
-
-    [class*="bg-blue-950"] { background-color: #DFEBEE !important; border-color: #9DC2CD !important; }
-    [class*="text-blue-400"] { color: #2E6274 !important; }
-    [class*="border-blue-800"] { border-color: #9DC2CD !important; }
-
-    [class*="bg-emerald-950"] { background-color: #E4EAD6 !important; border-color: #A7BB87 !important; }
-    [class*="text-emerald-400"], [class*="border-emerald-500"] { color: #4B5E31 !important; border-color: #A7BB87 !important; }
-
-    [class*="bg-purple-950"] { background-color: #EBE0E8 !important; border-color: #BC9FBC !important; }
-    [class*="text-purple-400"] { color: #6B4A6B !important; }
-
-    [class*="bg-pink-950"] { background-color: #F7E2E8 !important; border-color: #DDA7BB !important; }
-    [class*="text-pink-400"] { color: #9A4A64 !important; }
-
-    #modal-body-content blockquote { color: #6B5847 !important; }
-    #modal-body-content strong { color: #3A2D22; }
-    #modal-body-content ::marker { color: #C1502E; }
-    #modal-body-content a { color: #C1502E; text-decoration: underline; }
-</style>
 <body class="font-sans min-h-screen flex flex-col text-crust selection:bg-yolk selection:text-crust relative">
 
     <!-- Hand-drawn wobble filter, used across doodle borders -->
