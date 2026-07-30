@@ -65,9 +65,9 @@
                     <i class="fa-solid fa-box-open text-paper text-lg"></i>
                     <span class="absolute -top-1.5 -right-1.5 text-sm">🍱</span>
                 </div>
-                <div class="hidden xs:block">
+                <div class="block leading-tight">
                     <h1 class="text-md sm:text-lg font-display font-semibold tracking-wide text-crust group-hover:text-clay transition-colors leading-tight">SNUC Freshers'</h1>
-                    <p class="text-2xs sm:text-xs text-crust/60 tracking-wider uppercase font-bold">Lunchbox Survival Guide</p>
+                    <p class="text-2xs sm:text-xs text-crust/60 tracking-wider uppercase font-bold">Survival Guide</p>
                 </div>
             </a>
 
@@ -80,7 +80,7 @@
                     type="text"
                     id="global-search"
                     oninput="handleSearch(this.value)"
-                    placeholder="Peek inside the lunchbox..."
+                    placeholder="Search.."
                     class="w-full bg-paper text-crust placeholder-crust/40 text-xs sm:text-sm rounded-2xl py-2.5 pl-9 pr-10 border-2 border-crust/15 focus:outline-none focus:border-clay transition-colors duration-300">
                     
                     <button
@@ -127,10 +127,6 @@
 
             <!-- Heading -->
             <div class="flex items-center gap-5 mb-8">
-
-                <span class="text-5xl">
-                    📌
-                </span>
 
                 <div>
 
@@ -198,8 +194,7 @@
 
             <!-- Lunchbox Tray -->
             <div class="rounded-[2.5rem] border-[3px] border-crust bg-clay/90 p-3 sm:p-5 shadow-lifted relative">
-                <!-- clasp doodle -->
-                <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-16 h-8 rounded-full bg-crust border-[3px] border-crust hidden sm:block"></div>
+            
                 <div id="master-categories-grid" class="lunchbox-grid">
                     <!-- Dynamically loaded categories -->
                 </div>
