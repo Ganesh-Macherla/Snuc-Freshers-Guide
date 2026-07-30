@@ -1,4 +1,47 @@
 const DATABASE = {
+        announcements: [
+
+    {
+        type: "🎉 EVENT",
+        message: "Orientation starts at 9:00 AM in the Auditorium."
+    },
+
+    {
+        type: "⚠️ REMINDER",
+        message: "Don't waste your attendance buffer during the first month."
+    },
+
+    {
+        type: "💡 SENIOR TIP",
+        message: "Almost every important announcement comes through your SNU email."
+    },
+
+    {
+        type: "🎙️ VERITAS",
+        message: "The latest Veritas podcast featuring Professor Vimal Kumar is now live.",
+
+        buttonText: "Watch Podcast",
+        link: "https://www.youtube.com/watch?v=azevSuHWulg"
+    },
+
+    {
+        type: "📢 CLUB UPDATE",
+        message: "Recruitments for most clubs have begun. Applications close this Friday.",
+
+        buttonText: "Apply Here",
+        link: "https://forms.gle/xxxxxxxx"
+    },
+
+    {
+        type: "🏆 HACKATHON",
+        message: "Registrations for Smart India Hackathon have started.",
+
+        buttonText: "Learn More",
+        link: "https://sih.gov.in"
+    },
+
+],
+            
             categories: {
                 academics: {
                     id: "academics",

@@ -2,7 +2,160 @@ let CURRENT_VIEW = 'home';
 let ACTIVE_CATEGORY = null;
 
 window.onload = function() {
+    function renderAnnouncements() {
+
+    const container = document.getElementById("announcement-carousel");
+    const dotsContainer = document.getElementById("announcement-dots");
+    const prevBtn = document.getElementById("announcement-prev");
+    const nextBtn = document.getElementById("announcement-next");
+
+    if (!container || !dotsContainer || !prevBtn || !nextBtn) return;
+
+    const announcements = DATABASE.announcements;
+
+    let current = 0;
+    let autoSlide;
+
+    function getIcon(type = "") {
+
+        switch(type.toLowerCase()) {
+
+            case "event":
+                return "📅";
+
+            case "warning":
+                return "⚠️";
+
+            case "tip":
+                return "💡";
+
+            default:
+                return "📢";
+
+        }
+
+    }
+
+    function renderSlide(index) {
+
+        const item = announcements[index];
+
+        container.innerHTML = `
+            <div class="flex items-center gap-8">
+
+                <div class="text-6xl flex-shrink-0">
+                    ${item.type.split(" ")[0]}
+                </div>
+
+                <div>
+                    <div class="uppercase tracking-[0.2em] text-sm font-extrabold text-clay">
+                        ${item.type.split(" ").slice(1).join(" ")}
+                    </div>
+
+                    <p class="text-xl mt-3 text-crust leading-relaxed max-w-3xl">
+                        ${item.message}
+                    </p>
+
+                    ${item.link ? `
+                        <a
+                            href="${item.link}"
+                            target="_blank"
+                            class="inline-flex items-center gap-2 mt-5
+                            px-5 py-2 rounded-full
+                            bg-clay text-white
+                            hover:scale-105
+                            transition">
+
+                            ${item.buttonText || "Open Link"}
+
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        </a>
+                    ` : ""}
+                </div>
+
+            </div>
+        `;
+
+        dotsContainer.innerHTML = announcements.map((_, i) => `
+
+            <button
+                class="w-4 h-4 rounded-full transition
+                ${i===index
+                    ? "bg-clay"
+                    : "bg-yellow-300 hover:bg-yellow-400"}"
+                data-index="${i}">
+            </button>
+
+        `).join("");
+
+        document.querySelectorAll("#announcement-dots button")
+        .forEach(dot => {
+
+            dot.onclick = () => {
+
+                current = Number(dot.dataset.index);
+
+                renderSlide(current);
+
+                restartAuto();
+
+            };
+
+        });
+
+    }
+
+    function next() {
+
+        current = (current + 1) % announcements.length;
+
+        renderSlide(current);
+
+    }
+
+    function previous() {
+
+        current--;
+
+        if(current < 0)
+            current = announcements.length - 1;
+
+        renderSlide(current);
+
+    }
+
+    function restartAuto() {
+
+        clearInterval(autoSlide);
+
+        autoSlide = setInterval(next,5000);
+
+    }
+
+    prevBtn.onclick = () => {
+
+        previous();
+
+        restartAuto();
+
+    };
+
+    nextBtn.onclick = () => {
+
+        next();
+
+        restartAuto();
+
+    };
+
+    renderSlide(current);
+
+    restartAuto();
+
+}
     renderMasterCategories();
+    renderAnnouncements();
     setupSearchIndex();
 };
 

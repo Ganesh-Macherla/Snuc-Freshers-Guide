@@ -85,16 +85,89 @@
 
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full relative z-10">
 
-        <!-- Live Seniors' Advice Board — sticky note -->
-        <div class="mb-10 p-4 sm:p-5 rounded-2xl bg-yolk/20 border-2 border-dashed border-yolk/70 flex items-start gap-3 shadow-soft relative -rotate-[0.4deg]">
-            <span class="flex-shrink-0 w-9 h-9 rounded-xl bg-yolk border-2 border-crust text-crust flex items-center justify-center mt-0.5">
-                <i class="fa-solid fa-note-sticky text-sm"></i>
-            </span>
-            <div>
-                <h3 class="text-2xs font-extrabold uppercase text-clayDeep tracking-wider font-display">Note from the Seniors</h3>
-                <p class="text-xs sm:text-sm text-crust/80 mt-1 font-hand text-base sm:text-lg leading-snug">"The 75% attendance rule is incredibly real — don't risk early misses. Check your official mail daily!"</p>
-            </div>
+        <!-- Campus Announcements Carousel -->
+    <!-- ================= CAMPUS NOTICE BOARD ================= -->
+
+<div id="announcement-board" class="relative mb-12">
+
+    <!-- Tape -->
+    <div
+        class="absolute left-1/2 -translate-x-1/2 -top-5 z-20
+        w-72 h-10 bg-yellow-200/80 rotate-[-2deg] shadow-sm"
+        style="clip-path:polygon(5% 0,95% 0,100% 20%,95% 100%,5% 100%,0 20%);">
+    </div>
+
+    <!-- Sticky Note -->
+    <div class="relative overflow-hidden rounded-[38px] border-2 border-yellow-300 bg-[#FFF4A8] shadow-xl">
+
+        <!-- Folded Corner -->
+        <div
+            class="absolute bottom-0 right-0 w-24 h-24 bg-yellow-300/70"
+            style="clip-path:polygon(100% 0,0 100%,100% 100%);">
         </div>
+
+        <div class="relative p-10">
+
+            <!-- Heading -->
+            <div class="flex items-center gap-5 mb-8">
+
+                <span class="text-5xl">
+                    📌
+                </span>
+
+                <div>
+
+                    <div class="uppercase tracking-[0.28em] text-xs font-extrabold text-[#7a5a00]">
+                        What's Buzzing
+                    </div>
+
+                    <h2 class="font-display text-4xl text-[#4B3722]">
+                        Campus Notice Board
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <!-- Announcement Content -->
+            <div
+                id="announcement-carousel"
+                class="min-h-[120px]">
+            </div>
+
+            <!-- Controls -->
+            <div class="mt-8 flex justify-center items-center gap-8">
+
+                <button
+                    id="announcement-prev"
+                    class="w-11 h-11 rounded-full hover:bg-yellow-200 transition flex items-center justify-center">
+
+                    <i class="fa-solid fa-chevron-left text-xl text-[#8B6200]"></i>
+
+                </button>
+
+                <div
+                    id="announcement-dots"
+                    class="flex gap-3">
+                </div>
+
+                <button
+                    id="announcement-next"
+                    class="w-11 h-11 rounded-full hover:bg-yellow-200 transition flex items-center justify-center">
+
+                    <i class="fa-solid fa-chevron-right text-xl text-[#8B6200]"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ======================================================= -->
 
         <!-- VIEW 1: HOME VIEW (LUNCHBOX TRAY) -->
         <div id="view-home" class="transition-all duration-500 ease-in-out">
