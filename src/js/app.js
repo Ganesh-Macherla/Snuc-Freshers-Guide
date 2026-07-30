@@ -15,6 +15,7 @@ window.onload = function() {
 
     let current = 0;
     let autoSlide;
+    let direction = "next";
 
     function getIcon(type = "") {
 
@@ -38,7 +39,27 @@ window.onload = function() {
 
     function renderSlide(index) {
 
-        const item = announcements[index];
+    const item = announcements[index];
+
+    const outClass =
+        direction === "next"
+            ? "notice-slide-out-left"
+            : "notice-slide-out-right";
+
+    const inClass =
+        direction === "next"
+            ? "notice-slide-in-left"
+            : "notice-slide-in-right";
+
+    container.classList.remove(
+        "notice-visible",
+        "notice-slide-in-left",
+        "notice-slide-in-right"
+    );
+
+    container.classList.add(outClass);
+
+    setTimeout(() => {
 
         container.innerHTML = `
             <div class="flex items-center gap-8">
@@ -48,6 +69,7 @@ window.onload = function() {
                 </div>
 
                 <div>
+
                     <div class="uppercase tracking-[0.2em] text-sm font-extrabold text-clay">
                         ${item.type.split(" ").slice(1).join(" ")}
                     </div>
@@ -72,27 +94,41 @@ window.onload = function() {
 
                         </a>
                     ` : ""}
+
                 </div>
 
             </div>
         `;
 
-        dotsContainer.innerHTML = announcements.map((_, i) => `
+        container.classList.remove(outClass);
 
-            <button
-                class="w-4 h-4 rounded-full transition
-                ${i===index
-                    ? "bg-clay"
-                    : "bg-yellow-300 hover:bg-yellow-400"}"
-                data-index="${i}">
-            </button>
+        container.classList.add(inClass);
 
-        `).join("");
+        requestAnimationFrame(() => {
+            container.classList.remove(inClass);
+            container.classList.add("notice-visible");
+        });
 
-        document.querySelectorAll("#announcement-dots button")
+    }, 350);
+
+    dotsContainer.innerHTML = announcements.map((_, i) => `
+        <button
+            class="w-4 h-4 rounded-full transition
+            ${i===index
+                ? "bg-clay"
+                : "bg-yellow-300 hover:bg-yellow-400"}"
+            data-index="${i}">
+        </button>
+    `).join("");
+
+    document.querySelectorAll("#announcement-dots button")
         .forEach(dot => {
 
             dot.onclick = () => {
+
+                direction = Number(dot.dataset.index) > current
+                    ? "next"
+                    : "prev";
 
                 current = Number(dot.dataset.index);
 
@@ -104,9 +140,11 @@ window.onload = function() {
 
         });
 
-    }
+}
 
     function next() {
+
+        direction = "next";
 
         current = (current + 1) % announcements.length;
 
@@ -115,6 +153,8 @@ window.onload = function() {
     }
 
     function previous() {
+
+        direction = "prev";    
 
         current--;
 
@@ -157,6 +197,17 @@ window.onload = function() {
     renderMasterCategories();
     renderAnnouncements();
     setupSearchIndex();
+    const searchInput = document.getElementById("global-search");
+    const clearBtn = document.getElementById("clear-search");
+
+    clearBtn.onclick = () => {
+        searchInput.value = "";
+
+        handleSearch("");
+
+        searchInput.focus();
+
+    };
 };
 
 // Visual identity per category — food doodle, colors, compartment size
@@ -320,6 +371,9 @@ function setupSearchIndex() {
 
 function handleSearch(query) {
     const dropdown = document.getElementById('search-dropdown');
+    const clearBtn = document.getElementById("clear-search");
+
+    clearBtn.classList.toggle("hidden", query.trim() === "");
     if(!query || query.trim() === '') {
         dropdown.classList.add('hidden');
         return;

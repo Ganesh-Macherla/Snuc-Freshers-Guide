@@ -147,3 +147,33 @@
     #modal-body-content strong { color: #3A2D22; }
     #modal-body-content ::marker { color: #C1502E; }
     #modal-body-content a { color: #C1502E; text-decoration: underline; }
+
+    /* ===== Notice Board Carousel Animation ===== */
+
+.notice-slide-out-left{
+    opacity:0;
+    transform:translateX(-45px);
+    transition:opacity .35s ease, transform .35s ease;
+}
+
+.notice-slide-out-right{
+    opacity:0;
+    transform:translateX(45px);
+    transition:opacity .35s ease, transform .35s ease;
+}
+
+.notice-slide-in-left{
+    opacity:0;
+    transform:translateX(45px);
+}
+
+.notice-slide-in-right{
+    opacity:0;
+    transform:translateX(-45px);
+}
+
+.notice-visible{
+    opacity:1;
+    transform:translateX(0);
+    transition:opacity .35s ease, transform .35s ease;
+}
