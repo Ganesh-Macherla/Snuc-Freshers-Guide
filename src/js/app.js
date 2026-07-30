@@ -8,11 +8,11 @@ window.onload = function() {
 
 // Visual identity per category — food doodle, colors, compartment size
 const CATEGORY_VISUALS = {
-    academics:    { emoji: '📚', food: 'Rice & Curry',   icon: 'fa-graduation-cap', bg: 'bg-clay',  tint: 'bg-[#FBE3D4]', ring: 'border-clay',  text: 'text-clayDeep',  tape: 'bg-clay' },
-    hostel:       { emoji: '🏠', food: 'Side Dumplings',  icon: 'fa-house',          bg: 'bg-sage',  tint: 'bg-[#E9EEDD]', ring: 'border-sage',  text: 'text-sageDeep',  tape: 'bg-sage' },
-    student_life: { emoji: '✨', food: 'Sweet Treats',    icon: 'fa-star',           bg: 'bg-yolk',  tint: 'bg-[#FBEFD1]', ring: 'border-yolk',  text: 'text-[#8A6412]', tape: 'bg-yolk' },
-    nearby:       { emoji: '🗺️', food: 'Pickled Sides',   icon: 'fa-map-location-dot', bg: 'bg-sky', tint: 'bg-[#DFEDF0]', ring: 'border-sky',   text: 'text-[#2E6274]', tape: 'bg-sky' },
-    emergency:    { emoji: '🩹', food: 'First-Aid Pouch', icon: 'fa-kit-medical',    bg: 'bg-tomato', tint: 'bg-[#FBE1DA]', ring: 'border-tomato', text: 'text-[#B4432A]', tape: 'bg-tomato' },
+    academics:    { emoji: '📚', food: 'Academia',   icon: 'fa-graduation-cap', bg: 'bg-clay',  tint: 'bg-[#FBE3D4]', ring: 'border-clay',  text: 'text-clayDeep',  tape: 'bg-clay' },
+    hostel:       { emoji: '🏠', food: 'Hostel Life',  icon: 'fa-house',          bg: 'bg-sage',  tint: 'bg-[#E9EEDD]', ring: 'border-sage',  text: 'text-sageDeep',  tape: 'bg-sage' },
+    student_life: { emoji: '✨', food: 'Miscellaneous',    icon: 'fa-star',           bg: 'bg-yolk',  tint: 'bg-[#FBEFD1]', ring: 'border-yolk',  text: 'text-[#8A6412]', tape: 'bg-yolk' },
+    nearby:       { emoji: '🗺️', food: 'Outside Campus',   icon: 'fa-map-location-dot', bg: 'bg-sky', tint: 'bg-[#DFEDF0]', ring: 'border-sky',   text: 'text-[#2E6274]', tape: 'bg-sky' },
+    emergency:    { emoji: '🩹', food: 'Student Wellness', icon: 'fa-kit-medical',    bg: 'bg-tomato', tint: 'bg-[#FBE1DA]', ring: 'border-tomato', text: 'text-[#B4432A]', tape: 'bg-tomato' },
 };
 
 function renderMasterCategories() {
@@ -26,7 +26,6 @@ function renderMasterCategories() {
         const cardHtml = `
             <div onclick="openCategoryPage('${cat.id}')" class="lb-${cat.id} box-card ${v.tint} relative overflow-hidden rounded-[1.75rem] flex flex-col justify-between p-5 sm:p-6 cursor-pointer group border-crust min-h-[150px]">
                 <div class="absolute -right-4 -bottom-4 text-7xl opacity-20 group-hover:opacity-35 transition-opacity select-none pointer-events-none">${v.emoji}</div>
-                <div class="absolute top-3 right-3 text-2xl steam-doodle select-none pointer-events-none">${isBig ? '💭' : ''}</div>
 
                 <div class="relative z-10">
                     <div class="flex items-center gap-2.5 mb-3">
@@ -81,7 +80,7 @@ function openCategoryPage(catId) {
 
     // Generate Bento Grid Card Layout elements dynamically with rich visible text & quotes
     category.cards.forEach((card, idx) => {
-        const rotate = ['tape-rotate-1', 'tape-rotate-2', 'tape-rotate-3'][idx % 3];
+        const rotate = '';
         const badgeClass = card.badgeColor || 'text-crust bg-cream border-crust/20';
         const bentoHtml = `
             <div onclick="openCardDetail('${catId}', '${card.id}')" class="box-card group relative flex flex-col justify-between p-5 rounded-[1.5rem] cursor-pointer ${card.size || 'col-span-1'} border-crust bg-paper">
